@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Blackmarket</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="blackmarket-container">
+        <div id="newspaper">
+            <div class="newspaper-header">
+                <h1>THE UNDERGROUND GAZETTE</h1>
+                <div class="newspaper-date">CONFIDENTIAL - FOR YOUR EYES ONLY</div>
+            </div>
+
+            <div class="newspaper-content">
+                <div class="newspaper-column">
+                    <h2>BLACK MARKET GOODS</h2>
+                    <p class="newspaper-text">Welcome to the underground market. Here you can find items that are not available through conventional means. All transactions are strictly confidential.</p>
+
+                    <div class="item-categories">
+                        <div class="category" data-category="weapons">WEAPONS</div>
+                        <div class="category" data-category="ammo">AMMUNITION</div>
+                        <div class="category" data-category="tools">TOOLS</div>
+                    </div>
+
+                    <div class="items-container">
+                        <div id="weapons-items" class="category-items">
+                            <div class="item" data-item="weapon_pistol" data-price="1500">
+                                <div class="item-name">Pistol</div>
+                                <div class="item-price">$1,500</div>
+                                <div class="item-select">SELECT</div>
+                            </div>
+                            <div class="item" data-item="weapon_smg" data-price="3000">
+                                <div class="item-name">SMG</div>
+                                <div class="item-price">$3,000</div>
+                                <div class="item-select">SELECT</div>
+                            </div>
+                            <div class="item" data-item="weapon_assaultrifle" data-price="5000">
+                                <div class="item-name">Assault Rifle</div>
+                                <div class="item-price">$5,000</div>
+                                <div class="item-select">SELECT</div>
+                            </div>
+                        </div>
+
+                        <div id="ammo-items" class="category-items" style="display: none;">
+                            <div class="item" data-item="pistol_ammo" data-price="150">
+                                <div class="item-name">Pistol Ammo</div>
+                                <div class="item-price">$150</div>
+                                <div class="item-select">SELECT</div>
+                            </div>
+                            <div class="item" data-item="smg_ammo" data-price="250">
+                                <div class="item-name">SMG Ammo</div>
+                                <div class="item-price">$250</div>
+                                <div class="item-select">SELECT</div>
+                            </div>
+                            <div class="item" data-item="rifle_ammo" data-price="350">
+                                <div class="item-name">Rifle Ammo</div>
+                                <div class="item-price">$350</div>
+                                <div class="item-select">SELECT</div>
+                            </div>
+                        </div>
+
+                        <div id="tools-items" class="category-items" style="display: none;">
+                            <div class="item" data-item="lockpick" data-price="200">
+                                <div class="item-name">Lockpick</div>
+                                <div class="item-price">$200</div>
+                                <div class="item-select">SELECT</div>
+                            </div>
+                            <div class="item" data-item="advancedlockpick" data-price="500">
+                                <div class="item-name">Advanced Lockpick</div>
+                                <div class="item-price">$500</div>
+                                <div class="item-select">SELECT</div>
+                            </div>
+                            <div class="item" data-item="thermite" data-price="1500">
+                                <div class="item-name">Thermite</div>
+                                <div class="item-price">$1,500</div>
+                                <div class="item-select">SELECT</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="newspaper-column">
+                    <h2>YOUR ORDER</h2>
+                    <div id="selected-items">
+                        <p class="no-items">No items selected</p>
+                    </div>
+
+                    <div class="order-total">
+                        <div class="total-label">TOTAL:</div>
+                        <div class="total-amount">$0</div>
+                    </div>
+
+                    <div class="order-buttons">
+                        <button id="place-order">PLACE ORDER</button>
+                        <button id="cancel-order">CANCEL</button>
+                    </div>
+
+                    <div class="newspaper-warning">
+                        <p>WARNING: All transactions are final. No refunds will be provided under any circumstances. The provider assumes no responsibility for any consequences resulting from the use of these goods.</p>
+                        <p>By placing an order, you acknowledge the risks involved and agree to maintain absolute secrecy regarding this service.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="newspaper-footer">
+                <p>DESTROY AFTER READING - CONFIDENTIAL MATERIAL</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
