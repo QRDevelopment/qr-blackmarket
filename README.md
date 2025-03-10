@@ -1,5 +1,7 @@
 # QR Blackmarket
 
+![68747470733a2f2f692e6962622e636f2f52706366723948372f312e706e67 (1)|690x388](https://forum-cfx-re.akamaized.net/original/5X/6/2/f/6/62f629ec6f525caadd926e90f37cf360a630d65a.jpeg)
+
 A realistic blackmarket script for QBCore Framework that allows players to order illegal items through a newspaper interface.
 
 ## Features
