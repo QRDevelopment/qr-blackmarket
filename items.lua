@@ -1,0 +1,1 @@
+    blackpaper 			         = { name = 'blackpaper', label = 'Old newspaper', weight = 300, type = 'item', image = 'printerdocument.png', unique = false, useable = true, shouldClose = false, combinable = nil, description = 'Old newspaper!'},
