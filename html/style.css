@@ -1,0 +1,250 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Special Elite', cursive;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    display: none;
+    overflow: hidden;
+}
+
+#blackmarket-container {
+    width: 100%;
+    height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#newspaper {
+    width: 80%;
+    max-width: 1200px;
+    height: 85%;
+    background-color: #f5f0e1;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    overflow: auto;
+    padding: 20px;
+    position: relative;
+    background-image: url('img/paper_texture.jpg');
+    background-size: cover;
+}
+
+.newspaper-header {
+    text-align: center;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.newspaper-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    margin: 0;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.newspaper-date {
+    font-size: 14px;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.newspaper-content {
+    display: flex;
+    gap: 20px;
+}
+
+.newspaper-column {
+    flex: 1;
+    padding: 0 10px;
+}
+
+.newspaper-column h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.newspaper-text {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.item-categories {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.category {
+    padding: 5px 10px;
+    border: 1px solid #000;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.category:hover, .category.active {
+    background-color: #000;
+    color: #f5f0e1;
+}
+
+.items-container {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #000;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed #000;
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.item-name {
+    flex: 2;
+}
+
+.item-price {
+    flex: 1;
+    text-align: right;
+}
+
+.item-select {
+    flex: 1;
+    text-align: center;
+    padding: 2px 5px;
+    border: 1px solid #000;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.item-select:hover {
+    background-color: #000;
+    color: #f5f0e1;
+}
+
+#selected-items {
+    min-height: 100px;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #000;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.selected-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px dashed #000;
+}
+
+.selected-item:last-child {
+    border-bottom: none;
+}
+
+.selected-item-remove {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.no-items {
+    text-align: center;
+    font-style: italic;
+}
+
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0;
+    padding: 5px 0;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+.order-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.order-buttons button {
+    padding: 8px 15px;
+    background-color: #f5f0e1;
+    border: 2px solid #000;
+    font-family: 'Special Elite', cursive;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.order-buttons button:hover {
+    background-color: #000;
+    color: #f5f0e1;
+}
+
+.newspaper-warning {
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #000;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.newspaper-footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 2px solid #000;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f5f0e1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Newspaper aging effect */
+#newspaper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('img/stain_overlay.png');
+    background-size: cover;
+    opacity: 0.1;
+    pointer-events: none;
+}
