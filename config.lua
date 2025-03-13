@@ -1,5 +1,7 @@
 Config = {}
 
+Config.UseOxTarget = false -- if you use ox_target, set to "true"
+
 -- Price range for orders
 Config.MinOrderPrice = 1000
 Config.MaxOrderPrice = 5000
