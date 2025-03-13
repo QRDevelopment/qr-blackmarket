@@ -6,6 +6,7 @@ local deliveryBlip = nil
 local orderedItems = {}
 local orderTotal = 0
 local gunDealerPed = nil
+local deliveryVehicle = nil
 
 -- Initialize
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
@@ -87,6 +88,7 @@ RegisterNUICallback('placeOrder', function(data, cb)
         local vehicle = CreateVehicle(modelHash, deliveryCoords.x, deliveryCoords.y, deliveryCoords.z, deliveryCoords.w, false, false)
         SetEntityAsMissionEntity(vehicle, true, true)
         SetVehicleDoorsLocked(vehicle, 2) -- Lock the vehicle
+        deliveryVehicle = vehicle
 
         -- Set the vehicle livery to match the gun van from GTA Online (no livery)
         SetVehicleLivery(vehicle, 0) -- No livery
@@ -135,7 +137,33 @@ RegisterNUICallback('placeOrder', function(data, cb)
         local newY = vehCoords.y + (math.cos(rad) * offsetY) - (math.sin(rad) * offsetX)
         local newZ = vehCoords.z + offsetZ
 
-        -- Add target to the van
+        -- Add target to the van based on config setting
+        AddTargetToVehicle(vehicle)
+
+        cb({success = true})
+    end)
+end)
+
+-- Function to add target to vehicle based on config setting
+function AddTargetToVehicle(vehicle)
+    if Config.UseOxTarget then
+        -- ox_target implementation
+        exports.ox_target:addEntity(vehicle, {
+            {
+                name = 'blackmarket_collect_order',
+                icon = 'fas fa-box',
+                label = 'Collect Order',
+                canInteract = function()
+                    return orderPlaced and deliveryCoords ~= nil
+                end,
+                onSelect = function()
+                    TriggerEvent('qr-blackmarket:client:collectOrder')
+                end,
+                distance = 2.5
+            }
+        })
+    else
+        -- qb-target implementation
         exports['qb-target']:AddTargetEntity(vehicle, {
             options = {
                 {
@@ -150,10 +178,8 @@ RegisterNUICallback('placeOrder', function(data, cb)
             },
             distance = 2.5,
         })
-
-        cb({success = true})
-    end)
-end)
+    end
+end
 
 -- Create blip for delivery location
 function CreateDeliveryBlip(coords)
@@ -205,13 +231,29 @@ RegisterNetEvent('qr-blackmarket:client:collectOrder', function()
             deliveryBlip = nil
         end
 
-        -- Delete the dealer ped
-        if gunDealerPed then
-            DeletePed(gunDealerPed)
-            gunDealerPed = nil
+        -- Remove target based on config setting
+        if deliveryVehicle then
+            if Config.UseOxTarget then
+                exports.ox_target:removeEntity(deliveryVehicle, {'blackmarket_collect_order'})
+            else
+                exports['qb-target']:RemoveTargetEntity(deliveryVehicle)
+            end
         end
 
         QBCore.Functions.Notify("You've collected your order", "success")
+
+        -- Delete the dealer ped and vehicle after 10 seconds
+        SetTimeout(10000, function()
+            if gunDealerPed then
+                DeletePed(gunDealerPed)
+                gunDealerPed = nil
+            end
+
+            if deliveryVehicle then
+                DeleteVehicle(deliveryVehicle)
+                deliveryVehicle = nil
+            end
+        end)
     end, function() -- Cancel
         ClearPedTasks(PlayerPedId())
         QBCore.Functions.Notify("Cancelled", "error")
@@ -219,6 +261,6 @@ RegisterNetEvent('qr-blackmarket:client:collectOrder', function()
 end)
 
 -- Command for testing (remove in production)
- RegisterCommand('testblackmarket', function()
-     TriggerEvent('qr-blackmarket:client:openBlackMarket')
- end)
+RegisterCommand('testblackmarket', function()
+    TriggerEvent('qr-blackmarket:client:openBlackMarket')
+end)
