@@ -148,7 +148,7 @@ end)
 function AddTargetToVehicle(vehicle)
     if Config.UseOxTarget then
         -- ox_target implementation
-        exports.ox_target:addEntity(vehicle, {
+        exports.ox_target:addLocalEntity(vehicle, {
             {
                 name = 'blackmarket_collect_order',
                 icon = 'fas fa-box',
@@ -234,7 +234,7 @@ RegisterNetEvent('qr-blackmarket:client:collectOrder', function()
         -- Remove target based on config setting
         if deliveryVehicle then
             if Config.UseOxTarget then
-                exports.ox_target:removeEntity(deliveryVehicle, {'blackmarket_collect_order'})
+                exports.ox_target:removeLocalEntity(deliveryVehicle, {'blackmarket_collect_order'})
             else
                 exports['qb-target']:RemoveTargetEntity(deliveryVehicle)
             end
